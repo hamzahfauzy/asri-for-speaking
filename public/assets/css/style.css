@@ -1,0 +1,2085 @@
+/* --- CSS Professional Redesign --- */
+
+/* 1. Global Setup & Variables (SKEMA WARNA BARU) */
+:root {
+  --font-family: "Inter", sans-serif;
+  --bg-color: #ffffff; /* Latar utama menjadi putih bersih */
+  --sidebar-width: 280px;
+  --glass-bg: rgba(255, 255, 255, 0.6); /* Sedikit lebih opaque untuk kontras di atas putih */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --text-primary: #1f2937; /* Warna teks utama (gelap) */
+  --text-secondary: #6b7280; /* Warna teks sekunder (abu-abu) */
+  --primary-accent: #3b82f6; /* Warna Aksen BIRU BARU */
+  --primary-accent-darker: #2563eb; /* Biru lebih gelap untuk hover */
+  --sidebar-text: #dbeafe; /* Teks sidebar (biru sangat muda) */
+  --sidebar-text-hover: #ffffff;
+  --sidebar-bg-start: #1a202c; /* Biru gelap keunguan */
+  --sidebar-bg-end: #2d3748; /* Abu-abu gelap kebiruan */
+  --shadow-light: 0 8px 32px 0 rgba(0, 0, 0, 0.08); /* Bayangan lebih lembut */
+  --border-radius: 16px;
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --card-bg: #ffffff; /* Explicitly white for cards */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Struktur Flex Layout Responsive */
+body {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* 2. Dynamic Background Animation (ANIMASI BIRU BARU) */
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(-45deg, #e0f2f7, #c1e0f0, #9fd3eb, #78c0e0); /* Lebih cerah dan segar */
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 3. Sidebar (Glassmorphism) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--sidebar-bg-start), var(--sidebar-bg-end)); /* Gradien baru */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: var(--glass-border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1000;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.logo-link {
+  display: block;
+  line-height: 0; /* Menghilangkan spasi ekstra di bawah gambar */
+}
+
+.sidebar-logo {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.sidebar-toggle-close {
+  display: none;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+.sidebar-nav .nav-item,
+.sidebar-nav .nav-item-lesson {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--sidebar-text);
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+.sidebar-nav .nav-item i,
+.sidebar-nav .nav-item-lesson i {
+  margin-right: 1.2rem;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+.sidebar-nav .nav-item:hover,
+.nav-item-lesson:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--sidebar-text-hover);
+}
+.sidebar-nav .nav-item.active {
+  background: var(--primary-accent);
+  color: white;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.4);
+}
+
+.nav-item-dropdown .dropdown-icon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+.nav-item-dropdown.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  margin-left: 1.5rem;
+}
+.submenu a {
+  display: block;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.submenu a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-separator {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+}
+
+.nav-item-lesson .lesson-icon {
+  /* Changed from .lesson-number to .lesson-icon */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.8em;
+  padding: 4px 0;
+}
+.nav-item-lesson span {
+  font-size: 0.9rem;
+}
+
+/* 4. Main Content */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 2rem 2.5rem;
+  width: calc(100% - var(--sidebar-width));
+  transition: var(--transition-smooth);
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background: white; /* Header background white */
+  padding: 1rem 2rem; /* Adjust padding */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  justify-content: space-between; /* Space out items */
+}
+.sidebar-toggle-open {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+.search-bar {
+  flex-grow: 1; /* Allow search bar to take available space */
+  display: flex;
+  align-items: center;
+  background: #f0f2f7; /* Light background for search input */
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  max-width: 400px; /* Limit search bar width */
+  margin-left: 1.5rem; /* Space from toggle */
+}
+.search-bar i {
+  color: var(--text-secondary);
+}
+.search-bar input {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  margin-left: 0.8rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+.header-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.header-profile i {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.header-profile img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-accent);
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.page-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  margin-bottom: 2.5rem;
+}
+
+/* 5. Lesson Cards (Bento Grid & Staggered Animation) */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-smooth);
+  opacity: 1; /* Changed to 1, quiz section needs to be visible by default */
+  transform: translateY(0);
+}
+
+@keyframes card-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.lesson-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.card-icon-bg {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-icon-bg i {
+  font-size: 1.8rem;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.25rem 0 1rem 0;
+}
+.btn {
+  display: inline-block;
+  background-color: var(--primary-accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn:hover {
+  background-color: var(--primary-accent-darker);
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.4);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+/* Gaya btn-secondary disesuaikan dengan gambar */
+.btn-secondary {
+  background-color: #f0f2f7;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+.btn-tertiary {
+  background: none;
+  color: var(--text-secondary);
+  border: 1px solid #e2e8f0;
+}
+.btn-tertiary:hover {
+  background: #f8fafc;
+  color: var(--text-primary);
+}
+
+/* 6. Responsive Design */
+@media (max-width: 1200px) {
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 10px 0px 40px rgba(0, 0, 0, 0.1);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .sidebar-toggle-open {
+    display: block;
+  }
+  .sidebar-toggle-close {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--sidebar-text);
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .main-header {
+    padding: 1rem 1.5rem; /* Adjust header padding for smaller screens */
+  }
+  .search-bar {
+    margin-left: 1rem; /* Adjust margin */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem;
+  }
+  .main-header {
+    flex-wrap: wrap;
+    justify-content: center; /* Center header items when wrapped */
+  }
+  .search-bar {
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+    margin-top: 1rem; /* Add space below other header items */
+    margin-left: 0; /* Remove left margin */
+  }
+  .header-profile {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5rem; /* Adjust margin */
+  }
+  .sidebar-toggle-open {
+    order: 1; /* Ensure toggle is first */
+    margin-right: auto; /* Push it to the left */
+  }
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-title {
+    font-size: 1.8rem;
+  }
+  /* Responsive untuk layout identifikasi */
+  .identification-section .identification-body {
+    flex-direction: column;
+  }
+  .identification-illustration {
+    max-width: 250px;
+    margin-bottom: 2rem;
+  }
+}
+
+/* --- 7. Profile Page Styles --- */
+
+.profile-page .header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-left: 1.5rem;
+  flex-grow: 1;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
+}
+
+/* Kolom Kiri - Avatar */
+.profile-avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.avatar-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--primary-accent);
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.avatar-upload-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary-accent);
+  color: white;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.avatar-upload-button:hover {
+  transform: scale(1.1);
+}
+
+.avatar-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.avatar-username {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.badge {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: var(--primary-accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Kolom Kanan - Detail */
+.profile-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-header h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.btn.btn-secondary {
+  background-color: #f0f2f7;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+.btn.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+.btn.btn-tertiary {
+  background: none;
+  color: var(--text-secondary);
+  border: 1px solid #e2e8f0;
+}
+.btn.btn-tertiary:hover {
+  background: #f8fafc;
+  color: var(--text-primary);
+}
+
+/* Form Styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  font-family: var(--font-family);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+  background-color: white;
+}
+
+/* Readonly State (View Mode) */
+.form-group input:read-only {
+  background-color: transparent;
+  border-color: transparent;
+  padding-left: 0;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: default;
+}
+.form-group input:read-only:focus {
+  box-shadow: none;
+}
+
+.form-actions {
+  display: none; /* Hidden by default */
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Edit Mode */
+.profile-details-card.edit-mode .form-actions {
+  display: flex;
+}
+.profile-details-card.edit-mode #edit-profile-btn {
+  display: none;
+}
+.profile-details-card.edit-mode .form-group input {
+  background-color: white;
+  cursor: text;
+}
+.profile-details-card.edit-mode .form-group input:read-only {
+  /* Override for edit mode, in case some fields remain readonly */
+  background-color: #f8fafc;
+  cursor: not-allowed;
+}
+
+/* Responsive Adjustments for Profile Page */
+@media (max-width: 992px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-page .header-title {
+    display: none;
+  }
+}
+/* --- 8. Change Password Page Styles --- */
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.change-password-card {
+  max-width: 550px;
+  width: 100%;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.password-toggle-icon:hover {
+  color: var(--text-primary);
+}
+
+.password-strength-meter {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.password-strength-meter .strength-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+  transition: width 0.3s ease;
+}
+
+.password-strength-meter .strength-bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 0%; /* Default width */
+  border-radius: 3px;
+  background-color: #dc3545; /* Default weak color */
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Strength levels */
+.password-strength-meter.weak .strength-bar::after {
+  width: 33%;
+  background-color: #dc3545;
+}
+.password-strength-meter.medium .strength-bar::after {
+  width: 66%;
+  background-color: #ffc107;
+}
+.password-strength-meter.strong .strength-bar::after {
+  width: 100%;
+  background-color: #198754;
+}
+/* --- 9. DataTables-style Static Table --- */
+
+.datatable-wrapper {
+  padding: 1.5rem;
+}
+
+.datatable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.entries-control,
+.search-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.entries-control select,
+.search-control input {
+  border: 1px solid #dcdfe6;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  background-color: #f8fafc;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.styled-table thead th {
+  background-color: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.styled-table tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: middle;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #fdfdff;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f5f8ff;
+}
+
+.book-cover {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.book-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+.btn.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.btn.btn-sm i {
+  margin-right: 0.4rem;
+}
+
+.datatable-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.pagination a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.8rem;
+  margin-left: 0.3rem;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+}
+
+.pagination a:hover {
+  background-color: #f0f2f5;
+  color: var(--text-primary);
+}
+
+.pagination a.active {
+  background-color: var(--primary-accent);
+  color: white;
+  border-color: var(--primary-accent);
+  cursor: default;
+}
+
+.pagination a.disabled {
+  color: #ced4da;
+  cursor: not-allowed;
+  background-color: #f8fafc;
+}
+.pagination a.disabled:hover {
+  background-color: #f8fafc;
+}
+/* --- 10. Profile Dropdown Menu Styles --- */
+
+.header-profile {
+  position: relative; /* Penting untuk positioning dropdown */
+}
+
+.profile-avatar-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Titik status online di header */
+.status-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.status-dot.online {
+  background-color: #2ecc71; /* Warna hijau untuk online */
+}
+
+/* Styling Dropdown Menu */
+.profile-dropdown {
+  position: absolute;
+  top: 130%; /* Jarak dari header */
+  right: 0;
+  width: 260px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eef2f7;
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.profile-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Ganti/Update aturan CSS di file style.css Anda */
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* Kode Baru untuk memperbaiki logo terdistorsi */
+.dropdown-avatar {
+  flex-shrink: 0;
+  width: 48px; /* Memberi ukuran tetap pada wadah */
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5; /* Memberi background terang jika logo transparan */
+  border-radius: 8px;
+  overflow: hidden; /* Memastikan tidak ada yg keluar dari wadah */
+}
+
+.dropdown-logo-img {
+  max-width: 90%; /* Maksimal lebar gambar adalah 90% dari wadahnya */
+  max-height: 90%; /* Maksimal tinggi gambar adalah 90% dari wadahnya */
+  height: auto;
+  width: auto;
+  object-fit: contain; /* Memastikan rasio aspek gambar selalu terjaga */
+}
+
+/* Pastikan aturan CSS untuk list menu sudah benar */
+.dropdown-menu-list a i {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0; /* Mencegah ikon menyusut */
+}
+
+.dropdown-user-info h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.dropdown-user-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.dropdown-divider {
+  border: none;
+  height: 1px;
+  background-color: #eef2f7;
+  margin: 0;
+}
+
+.dropdown-menu-list {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.dropdown-menu-list a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu-list a:hover {
+  background-color: #f5f8ff;
+  color: var(--primary-accent);
+}
+
+.dropdown-menu-list a i {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+/* --- 11. Learning Path / Lesson Detail Page Styles --- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: var(--primary-accent);
+}
+.breadcrumb p {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.breadcrumb span {
+  color: var(--text-secondary);
+}
+
+.learning-path-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.accordion-item {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  border: var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  gap: 1rem;
+}
+.accordion-title {
+  flex-grow: 1;
+}
+.accordion-title h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+.accordion-title p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.accordion-progress {
+  flex-shrink: 0;
+  width: 200px;
+  text-align: right;
+}
+.accordion-progress span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.progress-bar-wrapper {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 500px; /* Atur tinggi maksimal saat terbuka */
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+.accordion-content[style*="max-height: 0px"] {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Stepper List Styling */
+.step-list {
+  list-style: none;
+  padding-left: 20px;
+  position: relative;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  position: relative;
+  cursor: pointer; /* Make step items clickable */
+}
+.step-item:not(:last-child) {
+  border-bottom: 1px solid #eef2f7;
+}
+.step-item:hover {
+  background-color: #f5f8ff; /* Add hover effect */
+  border-radius: 8px;
+}
+
+/* Garis vertikal untuk stepper */
+.step-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: 35px; /* Sesuaikan posisi awal garis */
+  bottom: -15px; /* Sesuaikan posisi akhir garis */
+  width: 2px;
+  background-color: #e2e8f0;
+}
+.step-item.completed:not(:last-child)::before {
+  background-color: #2ecc71; /* Green for completed line */
+}
+
+.step-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  margin-right: 1.5rem;
+  position: relative;
+  left: -22px;
+  background-color: var(--bg-color);
+  z-index: 1; /* Ensure icon is above the line */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.step-icon {
+  font-size: 1.5rem;
+}
+.step-item.completed .step-icon {
+  color: #2ecc71;
+}
+.step-item.active .step-icon {
+  color: var(--primary-accent);
+}
+.step-item.locked .step-icon {
+  color: #94a3b8;
+}
+
+/* NEW: Default icons for step items when not active/completed/locked */
+#step-identification .step-icon {
+  color: var(--primary-accent);
+}
+#step-notification .step-icon {
+  color: var(--primary-accent);
+}
+#step-description .step-icon {
+  color: var(--primary-accent);
+}
+#step-application .step-icon {
+  color: var(--primary-accent);
+}
+#step-harmonization .step-icon {
+  color: var(--primary-accent);
+}
+
+.step-info {
+  flex-grow: 1;
+}
+.step-item.locked .step-info {
+  opacity: 0.5;
+  pointer-events: none; /* Disable clicks on locked steps */
+}
+.step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+.step-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* --- Section Styling (General) --- */
+.identification-section,
+.notification-section,
+.description-section,
+.application-section,
+.harmonization-section {
+  display: flex;
+  flex-direction: column;
+  /* Hapus padding dari sini agar card bisa mengontrolnya */
+  padding: 0;
+  margin-top: 2rem;
+  /* Hapus perataan terpusat dari container utama */
+}
+.identification-section.card,
+.notification-section.card,
+.description-section.card,
+.application-section.card,
+.harmonization-section.card {
+  padding: 2.5rem; /* Tambahkan padding kembali ke elemen card */
+}
+
+/* =================== GAYA BARU UNTUK IDENTIFICATION SECTION =================== */
+
+.identification-section .identification-header {
+  /* Header sudah bagus, tidak perlu diubah */
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eef2f7;
+}
+
+/* Atur body menjadi layout flex dua kolom */
+.identification-section .identification-body {
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Jarak antara gambar dan konten */
+  width: 100%;
+  text-align: center;
+}
+
+/* Gaya untuk kolom ilustrasi kiri */
+.identification-illustration {
+  flex: 1;
+  max-width: 350px;
+}
+.identification-illustration img {
+  width: 60%;
+  height: 60%;
+}
+
+/* Gaya untuk pembungkus konten kanan */
+.identification-content-wrapper {
+  flex: 1.5; /* Ambil lebih banyak ruang */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.identification-instruction {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.identification-word-play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hapus animasi dari kata dan atur gaya */
+.identification-section .word-to-display {
+  animation: none;
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0;
+  user-select: none;
+  color: var(--primary-accent);
+}
+
+/* Gaya untuk kotak di sekitar kata */
+.word-box {
+  border: 2px solid var(--primary-accent);
+  border-radius: 12px;
+  padding: 1rem 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  background-color: #f0f8ff;
+}
+
+/* Gaya untuk gambar soundwave */
+.soundwave-visualizer {
+  width: 180px;
+  height: auto;
+  margin: 1rem 0;
+}
+
+/* Perbesar ikon volume */
+.identification-section .play-pronunciation-btn {
+  font-size: 3rem;
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.identification-section .play-pronunciation-btn:hover {
+  color: var(--primary-accent);
+  transform: scale(1.1);
+}
+
+.identification-note {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: black;
+}
+
+/* Atur footer untuk menyebarkan tombol */
+.identification-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid #eef2f7;
+}
+
+/* ============================================================================ */
+
+/* Word to display/listen/speak styles */
+.word-to-display {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary-accent);
+  margin-bottom: 2.5rem;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  user-select: none;
+  animation: pulse-word 1.5s infinite alternate;
+  align-self: center; /* Ensure it's centered within its flex container */
+}
+
+@keyframes pulse-word {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.play-pronunciation-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 5px;
+}
+
+.play-pronunciation-btn:hover {
+  color: var(--primary-accent);
+  transform: scale(1.1);
+}
+
+.play-pronunciation-btn:active {
+  transform: scale(0.95);
+}
+
+.speech-input-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.speak-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #ff6200;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.speak-button:hover {
+  background-color: #0055ff;
+}
+
+.speak-button:active {
+  background-color: #2b00ff;
+}
+
+.mic-button {
+  background-color: var(--primary-accent);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+  transition: all 0.3s ease;
+  animation: breathe-mic 1.5s infinite alternate;
+}
+
+/* ================================================= */
+/* ===         GAYA UNTUK LEGENDA PENILAIAN      === */
+/* ================================================= */
+
+.pronunciation-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem; /* Jarak antar item legenda */
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Gaya untuk setiap kotak legenda (hijau, kuning, merah) */
+.legend-item {
+  display: flex;
+  flex-direction: column; /* Ikon dan teks tersusun vertikal */
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  color: #ffffff; /* Warna teks & ikon menjadi putih agar kontras */
+  min-width: 110px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Gaya khusus untuk Ikon (memperbesar ukuran) */
+.legend-item i {
+  font-size: 1.8rem;
+  margin-bottom: 8px; /* Jarak dari ikon ke teks di bawahnya */
+}
+
+/* Gaya untuk teks di bawah ikon */
+.legend-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Definisi warna latar belakang (tetap sama) */
+.legend-green {
+  background-color: #2ecc71;
+}
+.legend-yellow {
+  background-color: #f1c40f;
+}
+.legend-red {
+  background-color: #e74c3c;
+}
+
+@keyframes breathe-mic {
+  from {
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 12px 30px rgba(13, 110, 253, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+.mic-button.recording {
+  background-color: #dc3545;
+  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+  animation: none;
+}
+.mic-button.recording i {
+  animation: pulse-mic 1s infinite;
+}
+
+@keyframes pulse-mic {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mic-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(13, 110, 253, 0.4);
+}
+
+.recording-status {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.user-spoken-word {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1rem;
+}
+
+.recognition-result {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.recognition-result.correct {
+  color: #28a745;
+}
+
+.recognition-result.incorrect {
+  color: #dc3545;
+}
+
+.pronunciation-score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: var(--primary-accent);
+}
+
+/* FOOTER BUTTONS ALIGNMENT */
+.notification-footer,
+.description-footer,
+.application-footer,
+.harmonization-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Space out buttons */
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eef2f7;
+  margin-top: 2rem;
+}
+
+.identification-footer .btn:first-child,
+.notification-footer .btn:first-child,
+.description-footer .btn:first-child,
+.application-footer .btn:first-child,
+.harmonization-footer .btn:first-child {
+  margin-right: auto;
+}
+.identification-footer .btn:last-child,
+.notification-footer .btn:last-child,
+.description-footer .btn:last-child,
+.application-footer .btn:last-child,
+.harmonization-footer .btn:last-child {
+  margin-left: auto;
+}
+.notification-footer .btn-tertiary,
+.application-footer .btn-tertiary {
+  margin: 0 1.5rem; /* Center it between prev/next */
+}
+
+/* Completion Screens */
+.identification-completion,
+.notification-completion,
+.description-completion,
+.application-completion,
+.harmonization-completion {
+  text-align: center;
+  padding: 3rem;
+}
+
+.identification-completion h3,
+.notification-completion h3,
+.description-completion h3,
+.application-completion h3,
+.harmonization-completion h3 {
+  font-size: 2rem;
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
+}
+
+.identification-completion p,
+.notification-completion p,
+.description-completion p,
+.application-completion p,
+.harmonization-completion p {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.application-completion .score,
+.harmonization-completion .score {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #28a745; /* Green for score */
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.description-section .description-word-container {
+  justify-content: center;
+}
+
+/* Styles for Harmonization multiple choice */
+.harmonization-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.harmonization-option {
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left; /* Ensure text alignment is left for options */
+}
+.harmonization-option input[type="radio"] {
+  margin-right: 1rem;
+  transform: scale(1.2);
+  accent-color: var(--primary-accent);
+  flex-shrink: 0;
+}
+.harmonization-option.correct {
+  background-color: #d4edda;
+  border-color: #28a744;
+  color: #155724;
+}
+.harmonization-option.incorrect {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+/* ================================================= */
+/* === GAYA ANIMASI UNTUK SOUNDWAVE VISUALIZER === */
+/* ================================================= */
+
+/* Hapus gaya lama untuk gambar dan ganti dengan ini untuk container div */
+.soundwave-visualizer {
+  display: flex; /* Membuat baris-baris berjajar horizontal */
+  justify-content: space-between; /* Memberi jarak antar baris */
+  align-items: center; /* Menjaga baris tetap di tengah secara vertikal */
+  width: 80px; /* Lebar total animasi */
+  height: 40px; /* Tinggi maksimal animasi */
+  margin: 1rem 0;
+}
+
+/* Gaya untuk setiap baris vertikal di dalam visualizer */
+.soundwave-visualizer span {
+  display: block;
+  width: 8px; /* Lebar setiap baris */
+  height: 100%; /* Tinggi awal */
+  background-color: #000000; /* Warna abu-abu netral untuk baris */
+  border-radius: 4px; /* Membuat ujung baris sedikit melengkung */
+
+  /* Terapkan animasi */
+  animation-name: soundwave-animation;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Definisi animasi 'keyframes' */
+@keyframes soundwave-animation {
+  from {
+    transform: scaleY(0.1); /* Mulai dari tinggi 10% */
+  }
+  to {
+    transform: scaleY(1); /* Mencapai tinggi 100% */
+  }
+}
+
+/* Beri jeda animasi yang berbeda untuk setiap baris agar gerakannya tidak serempak */
+.soundwave-visualizer span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+.soundwave-visualizer span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+.soundwave-visualizer span:nth-child(4) {
+  animation-delay: -0.6s;
+}
+.soundwave-visualizer span:nth-child(5) {
+  animation-delay: -0.8s;
+}
+
+/* =================================================================== */
+/* === GAYA LAYOUT GABUNGAN UNTUK NOTIFICATION, APPLICATION, & HARMONIZATION === */
+/* =================================================================== */
+
+/* Atur body menjadi layout flex dua kolom untuk ketiga section */
+.notification-section .notification-body,
+.application-section .application-body,
+.harmonization-section .harmonization-body {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* Gaya untuk kolom ilustrasi kiri untuk ketiga section */
+.notification-illustration,
+.application-illustration,
+.harmonization-illustration {
+  flex: 1;
+  max-width: 350px;
+}
+.notification-illustration img,
+.application-illustration img,
+.harmonization-illustration img {
+  width: 100%;
+  height: auto;
+}
+
+/* Gaya untuk pembungkus konten kanan untuk ketiga section */
+.notification-content-wrapper,
+.application-content-wrapper,
+.harmonization-content-wrapper {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Beri sedikit ruang di atas kata untuk perataan yang lebih baik */
+.application-section .word-to-display,
+.harmonization-section .word-to-display {
+  margin-top: 1rem;
+}
+
+/* Aturan responsive untuk layar kecil */
+@media (max-width: 768px) {
+  .notification-section .notification-body,
+  .application-section .application-body,
+  .harmonization-section .harmonization-body {
+    flex-direction: column;
+  }
+  .notification-illustration,
+  .application-illustration,
+  .harmonization-illustration {
+    max-width: 250px;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ================================================= */
+/* ===   GAYA LAYOUT UNTUK DESCRIPTION SECTION   === */
+/* ================================================= */
+
+.description-section .description-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
+  margin-top: 2rem; /* <-- TAMBAHKAN BARIS INI */
+}
+/* Gaya untuk kolom ilustrasi kiri */
+.description-illustration {
+  flex: 1; /* Lebar kolom */
+  max-width: 350px;
+  position: sticky; /* Membuat gambar tetap terlihat saat konten di kanan di-scroll */
+  top: 2rem;
+}
+.description-illustration img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Gaya untuk pembungkus konten kanan */
+.description-content-wrapper {
+  flex: 2; /* Lebar kolom */
+  width: 100%;
+  text-align: left; /* Konten di sini rata kiri */
+}
+
+/* Sesuaikan container kata agar rata kiri juga */
+.description-section .description-word-container {
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.description-section .word-to-display {
+  margin: 0 1rem 0 0;
+}
+
+.description-examples-list,
+.description-meanings-list {
+  padding-left: 20px; /* Beri indentasi pada list */
+}
+
+/* Aturan responsive untuk layar kecil */
+@media (max-width: 768px) {
+  .description-section .description-body {
+    flex-direction: column; /* Ubah jadi satu kolom */
+    align-items: center; /* Pusatkan kembali di mode kolom */
+  }
+  .description-illustration {
+    position: static; /* Hapus 'sticky' di layar kecil */
+    max-width: 250px;
+    margin-bottom: 2rem;
+  }
+  .description-content-wrapper {
+    text-align: center; /* Pusatkan teks di layar kecil agar konsisten */
+  }
+  .description-section .description-word-container {
+    justify-content: center; /* Pusatkan kembali di layar kecil */
+  }
+}
+
+/* ======================================================= */
+/* === GAYA BARU UNTUK TATA LETAK DESKRIPSI MENARIK === */
+/* ======================================================= */
+
+/* Atur wrapper konten utama */
+.description-content-wrapper {
+  display: flex;
+  flex-direction: column; /* Konten di dalam wrapper ini tersusun vertikal */
+  width: 100%;
+}
+
+/* Penataan untuk header kata yang dipusatkan */
+.word-header {
+  display: flex;
+  justify-content: center; /* Memusatkan konten secara horizontal */
+  align-items: center;
+  gap: 1.5rem; /* Jarak antara kata dan tombol play */
+  width: 100%;
+  margin-bottom: 1.5rem; /* Jarak ke garis pemisah */
+}
+
+/* Hapus margin bawaan dari judul kata */
+.word-header .word-to-display {
+  margin: 0;
+}
+
+/* Gaya untuk garis pemisah putus-putus */
+.dashed-separator {
+  border: none;
+  border-top: 2px dashed #000000; /* Warna garis abu-abu muda */
+  width: 90%; /* Lebar garis tidak penuh 100% */
+  margin: 0 auto 1.5rem auto; /* Posisi di tengah dan beri jarak bawah */
+}
+
+/* Pastikan detail penjelasan tetap rata kiri */
+.word-details {
+  width: 100%;
+  text-align: left;
+}
+
+/* Beri jarak antar elemen detail agar tidak terlalu rapat */
+.word-details p,
+.word-details ul {
+  margin-bottom: 1rem;
+}
+
+.word-details p:last-child,
+.word-details ul:last-child {
+  margin-bottom: 0;
+}
+
+/* ================================================= */
+/* === GAYA UNTUK HASIL SESI & LAPORAN AKHIR     === */
+/* ================================================= */
+
+/* Layar Hasil Per Sesi (Batch) */
+.session-result-wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.session-result-wrapper h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.session-score-card {
+  max-width: 550px;
+}
+
+.session-motivation {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+.btn-continue {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Layar Laporan Akhir Keseluruhan */
+.final-result-wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.final-result-wrapper h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Gaya Kartu Skor yang Anda berikan (ini sudah benar) */
+.score-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  flex-wrap: wrap;
+}
+.score-chart {
+  flex-shrink: 0;
+}
+.circular-chart {
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress-animation 1s ease-out forwards;
+}
+.circular-chart.green .circle {
+  stroke: #2ecc71;
+}
+.circular-chart.yellow .circle {
+  stroke: #f1c40f;
+}
+.circular-chart.red .circle {
+  stroke: #e74c3c;
+}
+.percentage {
+  font-family: var(--font-family);
+  font-size: 0.5em;
+  font-weight: 800;
+  text-anchor: middle;
+  fill: #333;
+}
+@keyframes progress-animation {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.score-details {
+  text-align: left;
+}
+.score-details h4 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+.score-breakdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 220px;
+}
+.score-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+}
+.score-breakdown .value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.breakdown-divider {
+  border: none;
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 0.5rem 0;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.dot.correct {
+  background-color: #2ecc71;
+}
+.dot.incorrect {
+  background-color: #e74c3c;
+}
+.summary-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Gaya untuk Rincian Skor per Sesi (Bar Chart) */
+.session-breakdown-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--border-radius);
+  padding: 1.5rem 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.session-breakdown-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.session-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.session-label {
+  flex-basis: 15%;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.bar-container {
+  flex-grow: 1;
+  background-color: #e5e7eb;
+  border-radius: 5px;
+  height: 22px;
+}
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 5px;
+}
+.session-score {
+  flex-basis: 15%;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

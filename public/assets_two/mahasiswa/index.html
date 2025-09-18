@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASRI 2025 - Professional Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background-animation"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo-link">
+          <div class="sidebar-logo">
+            <i class="fas fa-microphone-alt"></i>
+            <span>ASRI</span>
+          </div>
+        </a>
+        <button class="sidebar-toggle-close" id="sidebar-toggle-close">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="#" class="nav-item active"><i class="fas fa-home-alt fa-fw"></i><span>Beranda</span></a>
+          </li>
+          <li class="nav-item-dropdown">
+            <a href="" class="nav-item" id="account-toggle" aria-expanded="false" aria-controls="account-submenu">
+              <i class="fas fa-user-cog fa-fw"></i>
+              <span>Account Settings</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="submenu" id="account-submenu">
+              <li>
+                <a href="profile.html"><i class="fas fa-user-circle fa-fw"></i> Profile</a>
+              </li>
+              <li>
+                <a href="change-password.html"><i class="fas fa-key fa-fw"></i> Change Password</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="nav-separator"></div>
+
+        <ul>
+          <li>
+            <a href="lesson-detail.html" class="nav-item-lesson"><i class="fas fa-running fa-fw lesson-number"></i><span>Lesson 1: VERB</span></a>
+          </li>
+          <li>
+            <a href="lesson-noun.html" class="nav-item-lesson"><i class="fas fa-cube fa-fw lesson-number"></i><span>Lesson 2: NOUN</span></a>
+          </li>
+          <li>
+            <a href="lesson-adjective.html" class="nav-item-lesson"><i class="fas fa-palette fa-fw lesson-number"></i><span>Lesson 3: ADJECTIVE</span></a>
+          </li>
+          <li>
+            <a href="lesson-adverb.html" class="nav-item-lesson"><i class="fas fa-sliders-h fa-fw lesson-number"></i><span>Lesson 4: ADVERB</span></a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <button class="sidebar-toggle-open" id="sidebar-toggle-open">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Cari pelajaran atau topik..." />
+        </div>
+        <div class="header-profile">
+          <i class="fas fa-bell"></i>
+          <div class="profile-avatar-container" id="profile-toggle-btn">
+            <img src="https://i.pravatar.cc/150?img=32" alt="User Avatar" class="user-avatar" />
+            <span class="status-dot online"></span>
+          </div>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="dropdown-header">
+              <div class="dropdown-avatar">
+                <img src="assets/logo-asri1.png" alt="Logo ASRI" class="dropdown-logo-img" />
+              </div>
+              <div class="dropdown-user-info">
+                <h4>Mahasiswa</h4>
+                <p>Student</p>
+              </div>
+            </div>
+            <hr class="dropdown-divider" />
+            <ul class="dropdown-menu-list">
+              <li>
+                <a href="profile.html">
+                  <i class="fas fa-user-circle fa-fw"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fas fa-sign-out-alt fa-fw"></i>
+                  <span>Log Out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <section class="content-body">
+        <h2 class="page-title">List of Lesson</h2>
+        <p class="page-subtitle">Click More Detail for Detail Lesson</p>
+
+        <div class="lesson-grid">
+          <div class="card lesson-card" style="--anim-delay: 0.1s">
+            <div class="card-icon-bg" style="background-color: #e0f7fa">
+              <i class="fas fa-running" style="color: #00796b"></i>
+            </div>
+            <div class="card-content">
+              <span class="card-subtitle">LESSON 1</span>
+              <h3 class="card-title">Verb</h3>
+              <a href="lesson-detail.html" class="btn">More Detail...</a>
+            </div>
+          </div>
+          <div class="card lesson-card" style="--anim-delay: 0.2s">
+            <div class="card-icon-bg" style="background-color: #fff3e0">
+              <i class="fas fa-cube" style="color: #f57c00"></i>
+            </div>
+            <div class="card-content">
+              <span class="card-subtitle">LESSON 2</span>
+              <h3 class="card-title">Noun</h3>
+              <a href="lesson-noun.html" class="btn">More Detail...</a>
+            </div>
+          </div>
+          <div class="card lesson-card" style="--anim-delay: 0.3s">
+            <div class="card-icon-bg" style="background-color: #fce4ec">
+              <i class="fas fa-palette" style="color: #d81b60"></i>
+            </div>
+            <div class="card-content">
+              <span class="card-subtitle">LESSON 3</span>
+              <h3 class="card-title">Adjective</h3>
+              <a href="lesson-adjective.html" class="btn">More Detail...</a>
+            </div>
+          </div>
+          <div class="card lesson-card" style="--anim-delay: 0.4s">
+            <div class="card-icon-bg" style="background-color: #e8eaf6">
+              <i class="fas fa-sliders-h" style="color: #303f9f"></i>
+            </div>
+            <div class="card-content">
+              <span class="card-subtitle">LESSON 4</span>
+              <h3 class="card-title">Adverb</h3>
+              <a href="lesson-adverb.html" class="btn">More Detail...</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASRI 2025 - Profile</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background-animation"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo-link">
+          <div class="sidebar-logo">
+            <i class="fas fa-microphone-alt"></i>
+            <span>ASRI</span>
+          </div>
+        </a>
+        <button class="sidebar-toggle-close" id="sidebar-toggle-close">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-item active"><i class="fas fa-home-alt fa-fw"></i><span>Beranda</span></a>
+          </li>
+          <li class="nav-item-dropdown">
+            <a href="#" class="nav-item" id="account-toggle" aria-expanded="false" aria-controls="account-submenu">
+              <i class="fas fa-user-cog fa-fw"></i>
+              <span>Account Settings</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="submenu" id="account-submenu">
+              <li>
+                <a href="profile.html"><i class="fas fa-user-circle fa-fw"></i> Profile</a>
+              </li>
+              <li>
+                <a href="change-password.html"><i class="fas fa-key fa-fw"></i> Change Password</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="nav-separator"></div>
+
+        <ul>
+          <li>
+            <a href="lesson-detail.html" class="nav-item-lesson"><i class="fas fa-running fa-fw lesson-number"></i><span>Lesson 1: VERB</span></a>
+          </li>
+          <li>
+            <a href="lesson-noun.html" class="nav-item-lesson"><i class="fas fa-cube fa-fw lesson-number"></i><span>Lesson 2: NOUN</span></a>
+          </li>
+          <li>
+            <a href="lesson-adjective.html" class="nav-item-lesson"><i class="fas fa-palette fa-fw lesson-number"></i><span>Lesson 3: ADJECTIVE</span></a>
+          </li>
+          <li>
+            <a href="lesson-adverb.html" class="nav-item-lesson"><i class="fas fa-sliders-h fa-fw lesson-number"></i><span>Lesson 4: ADVERB</span></a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <button class="sidebar-toggle-open" id="sidebar-toggle-open">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h2 class="header-title">Profile</h2>
+        <div class="header-profile">
+          <i class="fas fa-bell"></i>
+          <img src="https://i.pravatar.cc/150?img=32" alt="User Avatar" />
+        </div>
+      </header>
+
+      <section class="content-body profile-page">
+        <div class="profile-grid">
+          <div class="card profile-avatar-card" style="--anim-delay: 0.1s">
+            <div class="avatar-container">
+              <img src="https://i.pravatar.cc/150?img=32" alt="User Avatar" class="avatar-image" />
+              <button class="avatar-upload-button">
+                <i class="fas fa-camera"></i>
+              </button>
+            </div>
+            <h3 class="avatar-name">Mahasiswa</h3>
+            <p class="avatar-username">@mahasiswa</p>
+            <span class="badge">Kategori L</span>
+          </div>
+
+          <div class="profile-details-container">
+            <div class="card profile-details-card" id="profile-card" style="--anim-delay: 0.2s">
+              <div class="card-header">
+                <h4>Detail Informasi</h4>
+                <button class="btn btn-secondary" id="edit-profile-btn"><i class="fas fa-pencil-alt"></i> Edit Profile</button>
+              </div>
+              <form id="profile-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" value="Mahasiswa" readonly />
+                  </div>
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="mahasiswa" readonly />
+                  </div>
+                  <div class="form-group full-width">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" id="alamat" value="Kisaran" readonly />
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn" id="save-btn">Save Changes</button>
+                  <button type="button" class="btn btn-tertiary" id="cancel-btn">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

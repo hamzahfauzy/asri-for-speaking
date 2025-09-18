@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ASRI Login & Register</title>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <!-- Sign Up Form -->
+      <div class="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <span>atau gunakan email Anda untuk pendaftaran</span>
+          <input type="text" placeholder="Nama Lengkap" />
+          <input type="text" placeholder="Alamat" />
+          <select class="gender-select">
+            <option value="" disabled selected>Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <input type="text" placeholder="No. WhatsApp Aktif" />
+          <input type="text" placeholder="Token: 8029" />
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <button type="submit">Daftar</button>
+        </form>
+      </div>
+
+      <!-- Sign In Form -->
+      <div class="form-container sign-in">
+        <form>
+          <h1>Masuk</h1>
+          <span>Gunakan username dan password Anda</span>
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+          <a href="#">Lupa Password?</a>
+          <button type="submit">Masuk</button>
+        </form>
+      </div>
+
+      <!-- Toggle Panel -->
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Selamat Datang Kembali!</h1>
+            <p>Masukkan detail pribadi Anda untuk menggunakan semua fitur situs</p>
+            <button class="hidden" id="login">Login</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Halo, Teman!</h1>
+            <p>Daftar dengan detail pribadi Anda untuk menggunakan semua fitur situs</p>
+            <button class="hidden" id="register">Daftar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const container = document.getElementById("container");
+      const registerButton = document.getElementById("register");
+      const loginButton = document.getElementById("login");
+
+      registerButton.addEventListener("click", () => {
+        container.classList.add("active");
+      });
+
+      loginButton.addEventListener("click", () => {
+        container.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>
