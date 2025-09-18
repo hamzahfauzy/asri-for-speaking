@@ -8,6 +8,7 @@ Route::get('/', new File('src/Views/landing', true));
 
 Route::beforeEnter('checkSession')->get('login', new File('src/Views/auth/login', true));
 Route::beforeEnter('checkSession')->get('forgot-password', new File('src/Views/auth/forgot-password', true));
+Route::beforeEnter('checkSession')->post('forgot-password', [Controllers\LoginController::class, 'resetPassword']);
 Route::beforeEnter('checkSession')->post('login', [Controllers\LoginController::class, 'login']);
 Route::beforeEnter('checkSession')->post('register', [Controllers\LoginController::class, 'register']);
 Route::beforeEnter('sessionRequired')->get('logout', [Controllers\LoginController::class, 'logout']);

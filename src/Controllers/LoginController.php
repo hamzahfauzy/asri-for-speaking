@@ -57,4 +57,28 @@ class LoginController {
         die;
     }
 
+    public function resetPassword()
+    {
+        $username = $_POST['username'];
+
+        $user = DB::table('users')->where('username', $username)->first();
+
+        if($user)
+        {
+            $new_pass = substr(md5(time()), 0, 6);
+            $md5_pass = md5($new_pass);
+            $user = DB::table('users')->where('id', $user['id'])->update([
+                'password' => $md5_pass
+            ]);
+
+            Session::set(['forgot_password'=>$new_pass]);
+            header('location: /forgot-password');
+            die;
+        }
+
+        setAlert('bg-danger', 'Reset password gagal. Username tidak ditemukan!', 'Failed');
+        header('location: /forgot-password');
+        die;
+    }
+
 }

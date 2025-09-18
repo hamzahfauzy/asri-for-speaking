@@ -17,8 +17,15 @@
         <input type="text" name="username" placeholder="Username" required />
         <button type="submit">Reset Password</button>
         <br>
-        <span>Kembali Ke Login<a href="/login"> Beranda</a></span>
+        <span>Kembali Ke <a href="/login"> Login</a></span>
       </form>
+
+      <?php if(isset($_SESSION['forgot_password'])): ?>
+        <div class='alert alert-success mt-3'>
+          Password baru Anda: <b><?=$_SESSION['forgot_password']?></b><br>
+          Silakan login dan segera ganti password.
+        </div>
+      <?php unset($_SESSION['forgot_password']); endif ?>
     </div>
 
     <!-- Toggle Panel -->
