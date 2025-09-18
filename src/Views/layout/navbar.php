@@ -12,7 +12,7 @@
         <div class="header-profile">
           <i class="fas fa-bell"></i>
           <div class="profile-avatar-container" id="profile-toggle-btn">
-            <img src="/assets/img/logo.png" alt="User Avatar" class="user-avatar" />
+            <img src="/public/assets/img/logo.png" alt="User Avatar" class="user-avatar" />
             <span class="status-dot online"></span>
           </div>
           <div class="profile-dropdown" id="profile-dropdown">
