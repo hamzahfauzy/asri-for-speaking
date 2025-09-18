@@ -5,7 +5,7 @@ $lesson_id = $_GET['lesson_id'];
 $query = "SELECT lesson_items.*, lessons.name lesson_name, sections.name section_name FROM lesson_items 
             LEFT JOIN lessons ON lessons.id = lesson_items.lesson_id
             LEFT JOIN sections ON sections.id = lesson_items.section_id
-            WHERE lessons.id = $lesson_id";
+            WHERE lesson_items.lesson_id = $lesson_id";
 $items = \Libs\Database\DB::exec($query);
 ?>
 <div class="card">
