@@ -19,8 +19,8 @@
         <input type="text" id="alamat" name="address" placeholder="Alamat" required />
         <select class="gender-select" name="gender" required>
           <option value="" disabled selected>Jenis Kelamin</option>
-          <option value="L">Laki-laki</option>
-          <option value="P">Perempuan</option>
+          <option value="male">Laki-laki</option>
+          <option value="female">Perempuan</option>
         </select>
         <input type="text" id="nowa" name="phone" placeholder="No. WhatsApp Aktif" required />
         <input type="text" id="username" name="username" placeholder="Username" required />

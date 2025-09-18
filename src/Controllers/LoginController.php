@@ -31,19 +31,23 @@ class LoginController {
     {
         $data = $_POST;
 
-        $user = DB::table('users')->insert([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'password' => md5($data['password'])
-        ]);
+        $data['password'] = md5($data['password']);
+        $data['level'] = 'student';
+
+        $user = DB::table('users')->insert($data);
 
         if($user)
         {
+            $user = DB::table('users')->where('id', $user)->first();
             Session::set(['user_id'=>$user['id']]);
-            return Response::json([], 'success');
+            setAlert('bg-success', 'Selamat Datang - ' . $user['name'], 'Successfully');
+            header('location: /home');
+            die;
         }
 
-        return Response::json([], 'failed', 400);
+        setAlert('bg-danger', 'Pendaftaran gagal!', 'Failed');
+        header('location: /login');
+        die;
     }
 
     public function logout()
