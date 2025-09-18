@@ -14,6 +14,11 @@ Route::beforeEnter('sessionRequired')->get('logout', [Controllers\LoginControlle
 
 Route::beforeEnter('sessionRequired')->get('home', new File('src/Views/admin/home', true));
 
+Route::beforeEnter('sessionRequired')->get('profile', new File('src/Views/admin/profile', true));
+Route::beforeEnter('sessionRequired')->post('profile', [Controllers\ProfileController::class, 'updateProfile']);
+Route::beforeEnter('sessionRequired')->get('change-password', new File('src/Views/admin/change-password', true));
+Route::beforeEnter('sessionRequired')->post('change-password', [Controllers\ProfileController::class, 'updatePassword']);
+
 Route::beforeEnter('sessionRequired')->get('students', new File('src/Views/admin/students/index', true));
 Route::beforeEnter('sessionRequired')->get('students/edit', new File('src/Views/admin/students/edit', true));
 Route::beforeEnter('sessionRequired')->post('students', [Controllers\UserController::class, 'store']);
