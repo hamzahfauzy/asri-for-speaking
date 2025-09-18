@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Dashboard");
-loadFile('../src/Views/layout/header'); ?>
+loadFile('src/Views/layout/header'); ?>
 <section class="content-body">
     <h2 class="page-title">List of Lesson</h2>
     <p class="page-subtitle">Click More Detail for Detail Lesson</p>
@@ -52,4 +52,4 @@ loadFile('../src/Views/layout/header'); ?>
     </div>
 </section>
 
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

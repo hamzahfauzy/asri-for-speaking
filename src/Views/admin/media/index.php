@@ -3,7 +3,7 @@
 use Libs\Database\DB;
 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Media");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 
 $lesson_id = $_GET['lesson_id'];
 
@@ -454,7 +454,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
     </div>
 </main>
 
-<?php loadFile('../src/Views/layout/footer', [
+<?php loadFile('src/Views/layout/footer', [
     '<script src="https://code.responsivevoice.org/responsivevoice.js?key=R2qA371F"></script>',
-    '<script src="/assets_two/mahasiswa/media.js?v='.strtotime('now').'"></script>'
+    '<script src="/public/assets_two/mahasiswa/media.js?v='.strtotime('now').'"></script>'
 ]); ?>

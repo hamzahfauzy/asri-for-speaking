@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Edit Data Media");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 $lesson_id = $_GET['lesson_id'];
 $id = $_GET['id'];
 $lesson = \Libs\Database\DB::table('lessons')->where('id', $lesson_id)->first();
@@ -67,4 +67,4 @@ $sections = \Libs\Database\DB::table('sections')->get();
     </div>
   </div>
 </div>
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

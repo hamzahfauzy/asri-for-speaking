@@ -20,8 +20,8 @@ class App
     static function render()
     {
 
-        require '../src/Libs/functions.php';
-        require '../config/routes.php';
+        require 'src/Libs/functions.php';
+        require 'config/routes.php';
 
         $allRoutes     = \Libs\Web\Route::getAllRoutes();
         $requestPath   = self::getRequestPath();

@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Tambah Data Mahasiswa");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 ?>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
@@ -75,4 +75,4 @@ loadFile('../src/Views/layout/header');
     </div>
   </div>
 </div>
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

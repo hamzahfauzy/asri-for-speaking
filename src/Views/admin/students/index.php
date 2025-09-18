@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Daftar Mahasiswa");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 $users = \Libs\Database\DB::table('users')->where('level','student')->get();
 ?>
 <div class="card">
@@ -78,4 +78,4 @@ $users = \Libs\Database\DB::table('users')->where('level','student')->get();
     </div>
 </div>
 
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

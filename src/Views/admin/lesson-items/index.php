@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | List Media");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 $lesson_id = $_GET['lesson_id'];
 $query = "SELECT lesson_items.*, lessons.name lesson_name, sections.name section_name FROM lesson_items 
             LEFT JOIN lessons ON lessons.id = lesson_items.lesson_id
@@ -72,4 +72,4 @@ $items = \Libs\Database\DB::exec($query);
     </div>
 </div>
 
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

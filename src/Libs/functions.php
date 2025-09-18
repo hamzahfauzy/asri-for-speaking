@@ -5,7 +5,7 @@ use Libs\Web\Session;
 
 session_start();
 
-require '../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '//../../');
 $dotenv->safeLoad();
@@ -28,7 +28,7 @@ function env($key, $default = null)
 
 function config($key)
 {
-    $file =  '../config/' . $key .'.php';
+    $file =  'config/' . $key .'.php';
 
     if(file_exists($file))
     {

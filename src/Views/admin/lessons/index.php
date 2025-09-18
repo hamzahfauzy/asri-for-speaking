@@ -1,6 +1,6 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Data Media");
-loadFile('../src/Views/layout/header'); 
+loadFile('src/Views/layout/header'); 
 $lessons = \Libs\Database\DB::table('lessons')->get();
 ?>
 <div class="card">
@@ -58,4 +58,4 @@ $lessons = \Libs\Database\DB::table('lessons')->get();
     </div>
 </div>
 
-<?php loadFile('../src/Views/layout/footer'); ?>
+<?php loadFile('src/Views/layout/footer'); ?>

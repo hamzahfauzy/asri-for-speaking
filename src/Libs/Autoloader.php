@@ -8,7 +8,7 @@ function my_autoloader($class) {
     {
         $classType = $classes[0];
         // unset($classes[0]);
-        $importClass = '../src/' . implode('/',$classes);
+        $importClass = 'src/' . implode('/',$classes);
 
         if(file_exists($importClass.'.php'))
         {
@@ -23,7 +23,7 @@ function my_autoloader($class) {
     {
         $importClass = implode('/',$classes);
 
-        if(file_exists('../'.$importClass.'.php'))
+        if(file_exists($importClass.'.php'))
         {
             require $importClass.'.php';
         }

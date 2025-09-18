@@ -11,10 +11,10 @@ class File
     {
         if(!$this->isHtml)
         {
-            return require '../'.$this->processFile .'.php';
+            return require $this->processFile .'.php';
         }
 
-        require '../'.$this->processFile .'.php';
+        require $this->processFile .'.php';
         die;
     }
 }
