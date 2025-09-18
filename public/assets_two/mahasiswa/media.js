@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //   const descriptionMeaningIntroEl = document.getElementById("description-meaning-intro");
 //   const descriptionMeaningsList = document.getElementById("description-meanings-list");
 //   const descriptionExamplesList = document.getElementById("description-examples-list");
-//   const descriptionCurrentIndexEl = document.getElementById("description-current-index");
+  const descriptionCurrentIndexEl = document.getElementById("description-current-index");
 
   const wordDetails = document.getElementById("word-details");
   const descriptionTotalWordsEl = document.getElementById("description-total-words");
@@ -466,7 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // descriptionMeaningIntroEl.textContent = wordData.meaning_intro;
     // descriptionMeaningsList.innerHTML = wordData.meanings.map((m) => `<li>${m}</li>`).join("");
     // descriptionExamplesList.innerHTML = wordData.examples.map((ex) => `<li>${ex}</li>`).join("");
-    // descriptionCurrentIndexEl.textContent = currentDescriptionWordIndex + 1;
+    descriptionCurrentIndexEl.textContent = currentDescriptionWordIndex + 1;
     descriptionPrevBtn.style.display = currentDescriptionWordIndex > 0 ? "inline-block" : "none";
     descriptionNextBtn.style.display = currentDescriptionWordIndex < window.descriptionWordsData.length - 1 ? "inline-block" : "none";
     completeDescriptionBtn.style.display = currentDescriptionWordIndex === window.descriptionWordsData.length - 1 ? "inline-block" : "none";
