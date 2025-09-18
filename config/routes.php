@@ -43,6 +43,8 @@ Route::beforeEnter('sessionRequired')->put('lesson-items', [Controllers\LessonIt
 Route::beforeEnter('sessionRequired')->delete('lesson-items', [Controllers\LessonItemController::class, 'delete']);
 Route::beforeEnter('sessionRequired')->get('seed-lesson-items', [Controllers\LessonItemController::class, 'seedLesson']);
 
+Route::beforeEnter('sessionRequired')->get('results', new File('src/Views/admin/results/index', true));
+Route::beforeEnter('sessionRequired')->get('results/detail', new File('src/Views/admin/results/detail', true));
 Route::beforeEnter('sessionRequired')->post('save-result', [Controllers\SectionController::class, 'saveResult']);
 
 Route::beforeEnter('sessionRequired')->get('media', new File('src/Views/admin/media/index', true));

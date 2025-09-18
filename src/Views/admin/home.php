@@ -1,5 +1,10 @@
 <?php 
 \Libs\Web\Page::setTitle("ASRI for Speaking | Dashboard");
+$link = [
+    'admin' => 'lesson-items',
+    'teacher' => 'results',
+    'student' => 'media'
+];
 loadFile('src/Views/layout/header'); ?>
 <section class="content-body">
     <h2 class="page-title">List of Lesson</h2>
@@ -13,7 +18,7 @@ loadFile('src/Views/layout/header'); ?>
         <div class="card-content">
         <span class="card-subtitle">LESSON 1</span>
         <h3 class="card-title">Verb</h3>
-        <a href="/<?=auth()['level'] == 'admin' ? 'lesson-items' : 'media'?>?lesson_id=1" class="btn btn-primary">More Detail...</a>
+        <a href="/<?=$link[auth()['level']]?>?lesson_id=1" class="btn btn-primary">More Detail...</a>
         </div>
     </div>
 
@@ -24,7 +29,7 @@ loadFile('src/Views/layout/header'); ?>
         <div class="card-content">
         <span class="card-subtitle">LESSON 2</span>
         <h3 class="card-title">Noun</h3>
-        <a href="/<?=auth()['level'] == 'admin' ? 'lesson-items' : 'media'?>?lesson_id=2" class="btn btn-primary">More Detail...</a>
+        <a href="/<?=$link[auth()['level']]?>?lesson_id=2" class="btn btn-primary">More Detail...</a>
         </div>
     </div>
 
@@ -35,7 +40,7 @@ loadFile('src/Views/layout/header'); ?>
         <div class="card-content">
         <span class="card-subtitle">LESSON 3</span>
         <h3 class="card-title">Adjective</h3>
-        <a href="/<?=auth()['level'] == 'admin' ? 'lesson-items' : 'media'?>?lesson_id=3" class="btn btn-primary">More Detail...</a>
+        <a href="/<?=$link[auth()['level']]?>?lesson_id=3" class="btn btn-primary">More Detail...</a>
         </div>
     </div>
 
@@ -46,7 +51,7 @@ loadFile('src/Views/layout/header'); ?>
         <div class="card-content">
         <span class="card-subtitle">LESSON 4</span>
         <h3 class="card-title">Adverb</h3>
-        <a href="/<?=auth()['level'] == 'admin' ? 'lesson-items' : 'media'?>?lesson_id=4" class="btn btn-primary">More Detail...</a>
+        <a href="/<?=$link[auth()['level']]?>?lesson_id=4" class="btn btn-primary">More Detail...</a>
         </div>
     </div>
     </div>
