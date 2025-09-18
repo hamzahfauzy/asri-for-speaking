@@ -52,7 +52,7 @@ $sections = \Libs\Database\DB::table('sections')->get();
                 <button type="submit" class="btn btn-success">
                   <i class="fas fa-save"></i> Simpan Data
                 </button>
-                <a href="?page=student/list" class="btn btn-danger">
+                <a href="/lesson-items?lesson_id=<?=$lesson_id?>" class="btn btn-danger">
                   <i class="fas fa-times"></i> Batal
                 </a>
               </div>

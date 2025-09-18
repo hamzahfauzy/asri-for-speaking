@@ -63,7 +63,7 @@ loadFile('src/Views/layout/header');
                 <button type="submit" class="btn btn-success">
                   <i class="fas fa-save"></i> Simpan Data
                 </button>
-                <a href="?page=student/list" class="btn btn-danger">
+                <a href="/students" class="btn btn-danger">
                   <i class="fas fa-times"></i> Batal
                 </a>
               </div>
