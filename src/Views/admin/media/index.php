@@ -163,7 +163,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
             </div>
             <div class="identification-body">
               <div class="identification-illustration">
-                <img src="assets/kacap.jpg" alt="A person thinking and analyzing data on a computer screen." />
+                <img src="/public/assets/kacap.jpg" alt="A person thinking and analyzing data on a computer screen." />
               </div>
               <div class="identification-content-wrapper">
                 <p class="identification-instruction">Listen to the word carefully</p>
@@ -199,7 +199,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
             </div>
             <div class="notification-body">
               <div class="notification-illustration">
-                <img src="assets/noti.jpg" alt="Person speaking into a microphone for analysis." />
+                <img src="/public/assets/noti.jpg" alt="Person speaking into a microphone for analysis." />
               </div>
               <div class="notification-content-wrapper">
                 <p class="notification-instruction"></p>
@@ -251,7 +251,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
             <div class="description-body">
               <div class="description-illustration">
                 <h1 style="text-align: center; font-size: 40px; margin-bottom: 3px">Pay Attention</h1>
-                <img src="assets/description.jpg" alt="Detailed explanation of a word." />
+                <img src="/public/assets/description.jpg" alt="Detailed explanation of a word." />
               </div>
 
               <div class="description-content-wrapper">
@@ -296,7 +296,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
             </div>
             <div class="application-body">
               <div class="application-illustration">
-                <img src="assets/aplication.png" alt="Person practicing a task." />
+                <img src="/public/assets/aplication.png" alt="Person practicing a task." />
               </div>
               <div class="application-content-wrapper">
                 <p class="application-instruction"></p>
@@ -349,7 +349,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
             </div>
             <div class="harmonization-body">
               <div class="harmonization-illustration">
-                <img src="assets/harmonisasi.jpg" alt="Final practice stage." />
+                <img src="/public/assets/harmonisasi.jpg" alt="Final practice stage." />
               </div>
               <div class="harmonization-content-wrapper">
                 <p class="harmonization-instruction"></p>
