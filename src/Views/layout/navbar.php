@@ -18,7 +18,7 @@
           <div class="profile-dropdown" id="profile-dropdown">
             <div class="dropdown-header">
               <div class="dropdown-avatar">
-                <img src="/assets/img/logo.png" alt="Logo ASRI" class="dropdown-logo-img" />
+                <img src="/public/assets/img/logo.png" alt="Logo ASRI" class="dropdown-logo-img" />
               </div>
               <div class="dropdown-user-info">
                 <h4><?= auth()['name']; ?></h4>
