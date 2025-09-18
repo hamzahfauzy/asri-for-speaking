@@ -320,6 +320,6 @@
       </div>
     </footer>
 
-    <script src="assets_two/Utama/script.js"></script>
+    <script src="/public/assets_two/Utama/script.js"></script>
   </body>
 </html>
