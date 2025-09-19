@@ -218,6 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (currentApplicationTaskIndex === window.applicationWordsData.length - 1) {
                 completeApplicationBtn.style.display = "inline-block";
             }
+
+            elements.tryAgainBtn.style.display = "inline-block";
+            // elements.nextBtn.style.display = "none";
         }
         else if(window.activeLessonType == 'harmonization')
         {
@@ -540,13 +543,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("application-user-spoken-word").textContent = "";
     startApplicationRecognitionBtn.disabled = false;
     applicationTryAgainBtn.style.display = "none";
-    // applicationPrevBtn.style.display = currentApplicationTaskIndex > 0 ? "inline-block" : "none";
+    applicationPrevBtn.style.display = currentApplicationTaskIndex > 0 ? "inline-block" : "none";
     applicationNextBtn.style.display = "none";
     completeApplicationBtn.style.display = "none";
     
   }
   startApplicationRecognitionBtn.addEventListener("click", () => {
-    if(applicationFormData[currentApplicationTaskIndex]) return
+    if(applicationFormData[currentApplicationTaskIndex] && applicationFormData[currentApplicationTaskIndex].status == 1) return
     setupPronunciationRecognition(window.applicationWordsData[currentApplicationTaskIndex]);
     speechRecognition.start();
   });
