@@ -21,10 +21,28 @@ foreach($sections as $section)
 }
 
 $resultData = [];
+$summary    = [
+    'benar' => 0,
+    'salah' => 0,
+    'total' => 0
+];
 foreach($results as $result)
 {
     $resultData[$result['section_id']] = $result;
+    $content_object = json_decode($result['content_object'], true);
+    $summary['total'] += count($content_object);
+
+    // Ambil kolom "status" saja
+    $statuses = array_column($content_object, 'status');
+
+    // Hitung jumlah masing-masing status
+    $count = array_count_values($statuses);
+
+    $summary['benar'] += ($count[1] ?? 0);
+    $summary['salah'] += ($count[0] ?? 0);
 }
+
+$summary['percent'] = ceil(($summary['benar'] / $summary['total']) * 100);
 
 $section_state = count($resultData) ?? 0;
 
@@ -398,18 +416,18 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
                     d="M18 2.0845
                       a 15.9155 15.9155 0 0 1 0 31.831
                       a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="progress" stroke="#28c76f" stroke-width="3.8" stroke-dasharray="92, 100"
+                  <path class="progress" stroke="#28c76f" stroke-width="3.8" stroke-dasharray="<?=$summary['percent']?>, 100"
                     fill="none"
                     d="M18 2.0845
                       a 15.9155 15.9155 0 0 1 0 31.831
                       a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <text x="18" y="20.35" class="percentage" text-anchor="middle" font-size="7" fill="#111">92%</text>
+                  <text x="18" y="20.35" class="percentage" text-anchor="middle" font-size="7" fill="#111"><?=$summary['percent']?>%</text>
                 </svg>
               </div>
               <div>
-                <p>✅ Total Benar: <strong>46</strong></p>
-                <p>❌ Total Salah: <strong>4</strong></p>
-                <p>📘 Total Soal: <strong>50</strong></p>
+                <p>✅ Total Benar: <strong><?=$summary['benar']?></strong></p>
+                <p>❌ Total Salah: <strong><?=$summary['salah']?></strong></p>
+                <p>📘 Total Soal: <strong><?=$summary['total']?></strong></p>
               </div>
             </div>
             <!-- Info -->
@@ -418,10 +436,10 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
 
             <!-- Progress bar list -->
              <div style="max-width: 500px;margin:auto;">
-               <?php foreach($resultData as $index => $result): ?>
+               <?php $no=1; foreach($resultData as $index => $result): ?>
                <div class="mb-3">
                  <div class="d-flex justify-content-between small mb-1">
-                   <span>Sesi <?=$index+1?></span><span><?=(int)$result['total_value']?>/100</span>
+                   <span>Sesi <?=$no++?></span><span><?=(int)$result['total_value']?>/100</span>
                  </div>
                  <div class="progress-bar-wrapper">
                      <div class="progress-bar-fill" style="width: <?=(int)$result['total_value']?>%" id="lesson-progress-fill"></div>

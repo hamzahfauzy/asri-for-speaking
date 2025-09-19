@@ -39,7 +39,7 @@
         <a href="/forgot-password">Lupa Password?</a>
         <button type="submit">Masuk</button>
         <br>
-        <span>Kembali Ke Halaman<a href="home"> Beranda</a></span>
+        <span>Kembali Ke Halaman<a href="/"> Beranda</a></span>
       </form>
     </div>
 
