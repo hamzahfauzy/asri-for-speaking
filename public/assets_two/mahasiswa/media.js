@@ -544,7 +544,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startApplicationRecognitionBtn.disabled = false;
     applicationTryAgainBtn.style.display = "none";
     applicationPrevBtn.style.display = currentApplicationTaskIndex > 0 ? "inline-block" : "none";
-    applicationNextBtn.style.display = "none";
+    // applicationNextBtn.style.display = "none";
     completeApplicationBtn.style.display = "none";
     
   }

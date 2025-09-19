@@ -333,7 +333,7 @@ window.activeLessonType = "<?=isset($sectionId[$section_state]) ? $sectionId[$se
                 <button class="btn btn-tertiary" id="application-try-again-btn" style="display: none">
                 Retry <i class="fas fa-redo"></i>
                 </button>
-                <button class="btn btn-next" id="application-next-btn" style="display: none">
+                <button class="btn btn-next" id="application-next-btn">
                 Next <i class="fas fa-arrow-right"></i>
                 </button>
                 <button class="btn btn-complete" id="complete-application-btn" style="display: none">
