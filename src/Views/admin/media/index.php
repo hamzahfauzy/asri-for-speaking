@@ -38,8 +38,8 @@ foreach($results as $result)
     // Hitung jumlah masing-masing status
     $count = array_count_values($statuses);
 
-    $summary['benar'] += ($count[1] ?? 0);
-    $summary['salah'] += ($count[0] ?? 0);
+    $summary['benar'] += isset($content_object[0]['status']) ? ($count[1] ?? 0) : count($content_object);
+    $summary['salah'] += isset($content_object[0]['status']) ? ($count[0] ?? 0) : 0;
 }
 
 $summary['percent'] = ceil(($summary['benar'] / $summary['total']) * 100);
