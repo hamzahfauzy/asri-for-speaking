@@ -42,7 +42,7 @@ foreach($results as $result)
     $summary['salah'] += isset($content_object[0]['status']) ? ($count[0] ?? 0) : 0;
 }
 
-$summary['percent'] = ceil(($summary['benar'] / $summary['total']) * 100);
+$summary['percent'] = $summary['total'] && $summary['benar'] ? ceil(($summary['benar'] / $summary['total']) * 100) : 0;
 
 $section_state = count($resultData) ?? 0;
 
