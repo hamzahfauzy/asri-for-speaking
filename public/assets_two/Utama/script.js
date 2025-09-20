@@ -10,6 +10,7 @@ const watchDemoBtn = document.getElementById("watchDemo");
 hamburger?.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
+  document.querySelector('.navbar').classList.toggle('mobile')
 });
 
 // Smooth Scrolling

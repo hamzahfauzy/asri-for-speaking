@@ -4,17 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASRI - Automatic Speech Recognition Indah | Belajar Speaking Bahasa Inggris</title>
-    <link rel="stylesheet" href="/public/assets_two/Utama/style.css" />
+    <link rel="stylesheet" href="/public/assets_two/Utama/style.css?v=<?=strtotime('now')?>" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Header -->
     <header class="header">
       <nav class="navbar">
-        <div class="nav-brand">
-          <div class="logo">
-            <i class="fas fa-microphone-alt"></i>
-            <span>ASRI</span>
+        <div class="nav-brand-container">
+          <div class="nav-brand">
+            <div class="logo">
+              <i class="fas fa-microphone-alt"></i>
+              <span>ASRI</span>
+            </div>
+          </div>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
         <ul class="nav-menu">
@@ -22,11 +29,6 @@
           <li><a href="#indah-method">Tentang Kami</a></li>
           <li><a href="login" class="btn-primary" style="color: white;">Login</a></li>
         </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </nav>
     </header>
 
@@ -320,6 +322,6 @@
       </div>
     </footer>
 
-    <script src="/public/assets_two/Utama/script.js"></script>
+    <script src="/public/assets_two/Utama/script.js?v=<?=strtotime('now')?>"></script>
   </body>
 </html>

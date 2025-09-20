@@ -983,8 +983,23 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .nav-brand-container {
+    display: flex;justify-content:space-between;width:100%;align-items:center;
+  }
   .hamburger {
     display: flex;
+  }
+
+  .nav-menu.active {
+  display: flex !important;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+  .navbar.mobile {
+    flex-direction: column;
   }
 
   .nav-menu {
